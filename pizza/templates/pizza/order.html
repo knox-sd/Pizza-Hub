@@ -3,11 +3,20 @@
 
 <h2>{{ note }}</h2>
 
-<form enctype = "multipart/form-data" action="{% url 'order' %}" method="post">
+<form action="{% url 'order' %}" method="post">
     {% csrf_token %}
     {{ pizzaform }}
+    <br>
     <input type="submit" value="Place a Order">
+</form>
 
+<br><br>
+Want order more than one pizza?
+
+<form action= "{% url 'pizzas' %}" method="get">
+    {{multiple_form}}
+    <br>
+    <input type="submit" value="Get Pizza">
 </form>
 
 </html>
