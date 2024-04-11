@@ -1,1 +1,1 @@
-<h1> Pizza Hub - Pizza Order form</h1>
+<h1> Pizza Hub - Pizza Order Form</h1>
