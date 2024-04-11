@@ -8,7 +8,8 @@ from .models import Pizza, Size #for Meta Class
 
 class PizzaForm(forms.ModelForm):
 
-    size = forms.ModelChoiceField(queryset=Size.objects, empty_label=None, widget=forms.RadioSelect)
+    # size = forms.ModelChoiceField(queryset=Size.objects, empty_label=None, widget=forms.RadioSelect)
+    image = forms.ImageField() #upload image form
 
     class Meta:
         model = Pizza

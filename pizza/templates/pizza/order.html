@@ -3,7 +3,7 @@
 
 <h2>{{ note }}</h2>
 
-<form action="{% url 'order' %}" method="post">
+<form enctype = "multipart/form-data" action="{% url 'order' %}" method="post">
     {% csrf_token %}
     {{ pizzaform }}
     <input type="submit" value="Place a Order">
