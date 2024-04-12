@@ -7,10 +7,9 @@
 <a href = "{% url 'edit_order' created_pizza_pk %}">Edit Your Order</a>
 {% endif %}
 
-<form action="{% url 'order' %}" method="post" novalidate>
+<form action="{% url 'order' %}" method="post">
     {% csrf_token %}
-    {{ pizzaform }}
-    <br>
+    {{ pizzaform.as_p }}
     <input type="submit" value="Place a Order">
 </form>
 
@@ -18,8 +17,7 @@
 Want order more than one pizza?
 
 <form action= "{% url 'pizzas' %}" method="get">
-    {{multiple_form}}
-    <br>
+    {{multiple_form.as_p}}
     <input type="submit" value="Get Pizza">
 </form>
 
