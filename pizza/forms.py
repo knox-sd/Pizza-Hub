@@ -10,6 +10,8 @@ class PizzaForm(forms.ModelForm):
 
     # size = forms.ModelChoiceField(queryset=Size.objects, empty_label=None, widget=forms.RadioSelect)
     # image = forms.ImageField() #upload image form
+    # email = forms.EmailField()
+    # url = forms.URLField()
 
     class Meta:
         model = Pizza
