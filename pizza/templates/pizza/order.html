@@ -7,9 +7,21 @@
 <a href = "{% url 'edit_order' created_pizza_pk %}">Edit Your Order</a>
 {% endif %}
 
-<form action="{% url 'order' %}" method="post">
+<form action="{% url 'order' %}" method="post" novalidate>
     {% csrf_token %}
-    {{ pizzaform.as_p }}
+    {% comment %} <table>
+    {{ pizzaform.as_table }}
+    </table> {% endcomment %}
+    {{ pizzaform.topping1.label_tag }}
+    {{ pizzaform.topping1 }}
+    {{ pizzaform.topping1.errors }}
+    {{ pizzaform.topping2.label_tag }}
+    {{ pizzaform.topping2 }}
+    {{ pizzaform.topping2.errors }}
+    <label for="{{ pizzaform.size.id_for_label}}">Size:</label>
+    {{ pizzaform.size }}
+    {{ pizzaform.size.errors }}
+    {% comment %} <br> {% endcomment %}
     <input type="submit" value="Place a Order">
 </form>
 
@@ -17,7 +29,10 @@
 Want order more than one pizza?
 
 <form action= "{% url 'pizzas' %}" method="get">
-    {{multiple_form.as_p}}
+    <table>
+    {{multiple_form.as_table}}
+    </table>
+    <br>
     <input type="submit" value="Get Pizza">
 </form>
 
