@@ -28,6 +28,19 @@ def order(request):
         return render(request, "pizza/order.html", {'pizzaform':form, 'multiple_form': multiple_form})
         # return render(request, "pizza/order.html")
 
+def edit_order(request, pk):
+    pizza = Pizza.objects.get(pk=pk)
+    form = PizzaForm(instance=pizza)
+    if request.method =="POST":
+        filled_form = PizzaForm(request.POST, instance=pizza)
+        if filled_form.is_valid():
+            filled_form.save()
+            form = filled_form
+            note = "Your oder has been updated." #after edit the order
+            return render(request, 'pizza/edit_order.html', {'note':note,'pizzaform':form, 'pizza':pizza})
+    return render(request, 'pizza/edit_order.html', {'pizzaform':form, 'pizza':pizza})
+
+
 def pizzas(request):
     number_of_pizzas = 2
     filled_multiple_pizza_form = MultiplePizzaForm(request.GET)
@@ -46,15 +59,3 @@ def pizzas(request):
         return render(request, 'pizza/pizzas.html', {'note':note, 'formset':formset})
     else:
         return render(request, 'pizza/pizzas.html', {'formset':formset})
-
-def edit_order(request, pk):
-    pizza = Pizza.objects.get(pk=pk)
-    form = PizzaForm(instance=pizza)
-    if request.method =="POST":
-        filled_form = PizzaForm(request.POST, instance=pizza)
-        if filled_form.is_valid():
-            filled_form.save()
-            form = filled_form
-            note = "Your oder has been updated." #after edit the order
-            return render(request, 'pizza/edit_order.html', {'note':note,'pizzaform':form, 'pizza':pizza})
-    return render(request, 'pizza/edit_order.html', {'pizzaform':form, 'pizza':pizza})

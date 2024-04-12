@@ -21,4 +21,4 @@ class PizzaForm(forms.ModelForm):
         # widgets = {'size':forms.CheckboxSelectMultiple}
 
 class MultiplePizzaForm(forms.Form):
-    number =forms.IntegerField(min_value=2, max_value=6)
+    number = forms.IntegerField(min_value=2, max_value=6)
