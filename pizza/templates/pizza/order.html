@@ -1,5 +1,56 @@
-<html>
-<h1>Order a Pizza!!</h1>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pizza Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+    {% load widget_tweaks %}
+
+    <div class="container">
+    <h1>Order a Pizza!!</h1>
+
+    <h2>{{ note }}</h2>
+
+    {% if created_pizza_pk %}
+    <a href = "{% url 'edit_order' created_pizza_pk %}">Edit Your Order</a>
+    {% endif %}
+
+    <form action="{% url 'order' %}" method="post">
+        {% csrf_token %}
+
+        {% for field in pizzaform %}
+        <div class="form-group">
+        {{ field.errors }}
+        {{ field.label_tag }}
+        {% render_field field class="form-control" %}
+        </div> 
+        {% endfor %}
+
+        <br>
+        <input type="submit" value="Place a Order">
+    </form>
+
+    <br><br>
+    Want order more than one pizza?
+
+    <form action= "{% url 'pizzas' %}" method="get">
+        <table>
+        {{multiple_form.as_table}}
+        </table>
+        <br>
+        <input type="submit" value="Get Pizza">
+    </form>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+
+{% comment %} <h1>Order a Pizza!!</h1>
 
 <h2>{{ note }}</h2>
 
@@ -7,12 +58,13 @@
 <a href = "{% url 'edit_order' created_pizza_pk %}">Edit Your Order</a>
 {% endif %}
 
-<form action="{% url 'order' %}" method="post" novalidate>
+<form action="{% url 'order' %}" method="post">
     {% csrf_token %}
-    {% comment %} <table>
+    <table>
     {{ pizzaform.as_table }}
-    </table> {% endcomment %}
-    {{ pizzaform.topping1.label_tag }}
+    </table>
+
+    {% comment %} {{ pizzaform.topping1.label_tag }}
     {{ pizzaform.topping1 }}
     {{ pizzaform.topping1.errors }}
     {{ pizzaform.topping2.label_tag }}
@@ -20,8 +72,9 @@
     {{ pizzaform.topping2.errors }}
     <label for="{{ pizzaform.size.id_for_label}}">Size:</label>
     {{ pizzaform.size }}
-    {{ pizzaform.size.errors }}
-    {% comment %} <br> {% endcomment %}
+    {{ pizzaform.size.errors }} {% endcomment %}
+
+    {% comment %} <br>
     <input type="submit" value="Place a Order">
 </form>
 
@@ -34,9 +87,8 @@ Want order more than one pizza?
     </table>
     <br>
     <input type="submit" value="Get Pizza">
-</form>
+</form> {% endcomment %}
 
-</html>
 
 
 

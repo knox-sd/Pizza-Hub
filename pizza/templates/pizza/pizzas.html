@@ -2,13 +2,9 @@
 <h2>{{ note }}</h2>
 
 <form action="{% url 'pizzas' %}" method="post">
-    {% csrf_token%}
-    {{ formset.management_form}}
-
-    {% for form in formset%}
-    {{ form }}
-    <br><br>
-    {% endfor %}
-    <input type="submit" value="Order Pizzas">
-
+  {% csrf_token%} {{ formset.management_form}} {% for form in formset%} {{ form
+  }}
+  <br /><br />
+  {% endfor %}
+  <input type="submit" value="Order Pizzas" />
 </form>
