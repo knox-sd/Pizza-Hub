@@ -2,7 +2,7 @@
 
 <h2> Pizza Hub is a Web Application for Pizza Order 🍕 by using Django, Python, and bootstrap. Where users can place the order the Pizza, and get order confirmation, and user can change the order and re-request with new order as well as Order multiple pizza orders.
 
-Working on more Features.
+Full version Web Application Features.
 - User Login and Registration 
 - Product listing in DB with details and same update & load in frontend.
 - Order and Payment verification and confirmation by email & phone.
